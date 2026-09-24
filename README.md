@@ -1,6 +1,7 @@
+آه فهمتك 😄 **بغيتي الـREADME كامل كـ code واحد فقط** باش تدير **Copy → Paste** مرة وحدة، وما يكونش فيه co````markdown
 # Enterprise Infrastructure Monitoring
 
-Dockerized infrastructure monitoring environment built with Prometheus, Node Exporter and Grafana on Ubuntu Linux.
+> Dockerized infrastructure monitoring environment built with Prometheus, Node Exporter and Grafana on Ubuntu Linux.
 
 ## Overview
 
@@ -29,62 +30,110 @@ The objective is to monitor infrastructure resources, collect system metrics and
                   |
                   v
           Monitoring Dashboard
-Technologies
-Technology	Purpose
-Ubuntu Linux	Operating system
-VMware Workstation	Virtualization
-Docker	Container runtime
-Docker Compose	Container orchestration
-Prometheus	Metrics collection and storage
-Node Exporter	System metrics
-Grafana	Metrics visualization
-PromQL	Monitoring query language
-Monitoring Dashboard
+````
 
-The Grafana dashboard monitors:
+## Technologies
 
-CPU utilization
-Memory utilization
-Disk utilization
-Network traffic
-Download traffic
-Upload traffic
-PromQL Queries
-CPU Usage
+| Technology         | Purpose                        |
+| ------------------ | ------------------------------ |
+| Ubuntu Linux       | Operating system               |
+| VMware Workstation | Virtualization platform        |
+| Docker             | Container runtime              |
+| Docker Compose     | Container orchestration        |
+| Prometheus         | Metrics collection and storage |
+| Node Exporter      | System metrics exporter        |
+| Grafana            | Metrics visualization          |
+| PromQL             | Monitoring query language      |
+
+## Monitoring Dashboard
+
+The Grafana dashboard provides visibility into:
+
+* CPU utilization
+* Memory utilization
+* Disk utilization
+* Network traffic
+* Download traffic
+* Upload traffic
+
+## PromQL Queries
+
+### CPU Usage
+
+```promql
 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
-Memory Usage
+```
+
+### Memory Usage
+
+```promql
 (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100
-Network Download
+```
+
+### Network Download
+
+```promql
 rate(node_network_receive_bytes_total{device!="lo"}[5m]) * 8
-Network Upload
+```
+
+### Network Upload
+
+```promql
 rate(node_network_transmit_bytes_total{device!="lo"}[5m]) * 8
-Docker Environment
+```
+
+## Docker Environment
 
 The monitoring environment is deployed using Docker Compose.
 
-Main services:
+### Main Services
 
-Prometheus
-Grafana
-Nginx
-Service Ports
-Service	Port
-Prometheus	9090
-Grafana	3000
-Nginx	8080
-Deployment
-Clone the repository
+* Prometheus
+* Grafana
+* Nginx
+
+### Service Ports
+
+| Service    |   Port |
+| ---------- | -----: |
+| Prometheus | `9090` |
+| Grafana    | `3000` |
+| Nginx      | `8080` |
+
+## Deployment
+
+### Clone the Repository
+
+```bash
 git clone https://github.com/eloilyass/enterprise-infrastructure-monitoring.git
 cd enterprise-infrastructure-monitoring
-Start the environment
+```
+
+### Start the Environment
+
+```bash
 docker compose up -d
-Check running containers
+```
+
+### Check Running Containers
+
+```bash
 docker ps
-Access Prometheus
+```
+
+### Access Prometheus
+
+```text
 http://localhost:9090
-Access Grafana
+```
+
+### Access Grafana
+
+```text
 http://localhost:3000
-Troubleshooting
+```
+
+## Troubleshooting
 
 During the deployment, a Docker volume mounting issue occurred with the Prometheus configuration file.
 
@@ -92,76 +141,89 @@ The issue was related to the host path being interpreted incorrectly as a direct
 
 The configuration structure was corrected and the containers were recreated:
 
+```bash
 docker compose down
 docker compose up -d
+```
 
 The monitoring environment was then successfully deployed.
 
-Project Structure
+## Project Structure
+
+```text
 enterprise-infrastructure-monitoring/
-|
 ├── prometheus/
 │   └── prometheus.yml
-|
 ├── grafana/
-|
 ├── screenshots/
 │   ├── monitoring-environment.png
 │   ├── prometheus-query.png
 │   └── ADMIN.png
-|
 ├── docs/
 │   └── Enterprise-Infrastructure-Monitoring.pdf
-|
 ├── docker-compose.yml
 └── README.md
-Documentation
+```
+
+## Documentation
 
 A complete technical report is included in this repository.
 
 The documentation covers:
 
-Infrastructure architecture
-Docker deployment
-Prometheus configuration
-Node Exporter
-Grafana dashboard
-PromQL queries
-Troubleshooting
-Monitoring environment
-Skills Demonstrated
-Linux Administration
-Docker
-Docker Compose
-Prometheus
-Node Exporter
-Grafana
-PromQL
-Infrastructure Monitoring
-System Monitoring
-Network Monitoring
-Troubleshooting
-VMware Workstation
-Future Improvements
-Add Alertmanager
-Configure CPU and memory alerts
-Add disk-space alerts
-Monitor multiple Linux servers
-Add Docker container metrics
-Implement infrastructure alerting
-Add centralized logging
-Monitor network devices using SNMP
-Add Grafana alert rules
-Author
+* Infrastructure architecture
+* Docker deployment
+* Prometheus configuration
+* Node Exporter
+* Grafana dashboard
+* PromQL queries
+* Troubleshooting
+* Monitoring environment
 
-Ilyass El Ouarrari
+## Skills Demonstrated
+
+* Linux Administration
+* Docker
+* Docker Compose
+* Prometheus
+* Node Exporter
+* Grafana
+* PromQL
+* Infrastructure Monitoring
+* System Monitoring
+* Network Monitoring
+* Troubleshooting
+* VMware Workstation
+
+## Future Improvements
+
+* Add Alertmanager
+* Configure CPU and memory alerts
+* Add disk-space alerts
+* Monitor multiple Linux servers
+* Add Docker container metrics
+* Implement infrastructure alerting
+* Add centralized logging
+* Monitor network devices using SNMP
+* Add Grafana alert rules
+
+## Author
+
+**Ilyass El Ouarrari**
 
 Junior Systems & Network Administrator
 
 Marrakech, Morocco
 
-Technologies
+### Technologies
 
-Linux Docker Prometheus Node Exporter Grafana PromQL VMware
+`Linux` `Docker` `Prometheus` `Node Exporter` `Grafana` `PromQL` `VMware`
+
+---
 
 Feel free to explore the repository and provide feedback.
+
+```
+
+**ولكن دير بالك:** فـ GitHub، ملي تلصق هادشي فـ **Edit README**، غادي يبان لك الـ Markdown source. من بعد **Preview** باش تتأكد أن الـ Architecture والـ tables والـ code blocks ترندرو مزيان.
+```
